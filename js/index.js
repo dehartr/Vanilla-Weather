@@ -7,7 +7,7 @@ function formatDate(timestamp){
     }
     let minutes = date.getMinutes();
     if(minutes< 10 ){
-        minutes = `0${minutes};`
+        minutes = `0${minutes}`
     }
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     let day = days[date. getDay()];
@@ -42,9 +42,21 @@ function displayTemp(response){
 
 }
 
-let city = "Atlanta"
+function search(city){
 let apiKey = "e6103b1173ff0o84d6baf0bf2taa3d79";
 let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
 
 axios.get(apiUrl).then(displayTemp)
 
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+search("Atlanta");
