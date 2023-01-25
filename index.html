@@ -17,7 +17,9 @@
 </head>
 <body>
     <div class="container">
+      <div class="weather-app-wrapper">
       <div class="weather-app">
+        <div class="overview">
       <h1>
         Atlanta
       </h1>
@@ -29,12 +31,18 @@
           Clear
         </li>
       </ul>
+    </div>
       <div class="row">
         <div class="col-6">
+          <div class="d-flex weather-temperature">
           <img
            src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" 
            alt="cloudy">
-           50° F | °C
+            <div>
+    <strong id="temperature"></strong
+    ><span class="units"> °F | <a href="#">°C</a></span>
+  </div>
+          </div>
           </div>
           
           <div class="col-6">
@@ -51,9 +59,12 @@
           </ul>
          </div>
       </div>
+   
+    </div> 
       <small>
-    <a href="https://github.com/dehartr/Weather-app" target="blank">Open-source code</a> by Rasheema DeHart  </small>
-    </div>
+    <a href="https://github.com/dehartr/Weather-app" target="blank">Open-source code</a> by Rasheema DeHart  
+  </small>
+  </div>
     </div>
     
     <script src="js/index.js"></script>
