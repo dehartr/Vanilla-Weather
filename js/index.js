@@ -16,6 +16,7 @@ function formatDate(timestamp){
 
 
 function displayTemp(response){
+    console.log(response)
     
     let tempElement = document.querySelector("#temperature")
     tempElement.innerHTML = Math.round(response.data.temperature.current);
@@ -35,10 +36,15 @@ function displayTemp(response){
     let date = document.querySelector('#date') 
     date.innerHTML = formatDate(response.data.time * 1000)
 
+
+    let icon = document.querySelector("#icon")
+    icon.innerHTML = `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.conditiom.icon}`
+
 }
 
+let city = "Atlanta"
 let apiKey = "e6103b1173ff0o84d6baf0bf2taa3d79";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=Atlanta&key=${apiKey}&units=imperial`;
+let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
 
 axios.get(apiUrl).then(displayTemp)
 
