@@ -38,7 +38,10 @@ function displayTemp(response){
 
 
     let icon = document.querySelector("#icon")
-    icon.innerHTML = `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.conditiom.icon}`
+    icon.setAttribute(
+  "src",
+  `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+);
 
 }
 
