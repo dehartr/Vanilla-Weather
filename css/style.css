@@ -1,7 +1,11 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
 }
-
+button{
+    background-color: white;
+    border: 1px solid;
+    border-radius: 50px;
+}
 h1{
     color:#878787;
     font-size: 24px;
@@ -32,7 +36,7 @@ li{
 }
 .weather-app{
   
-    padding: 20px;
+    padding: 30px;
     border: 1px solid #dadde1;
     border-radius: 5px;
 }
@@ -64,4 +68,18 @@ li{
 
 .weather-temperature .active:hover{
     text-transform: none;
+}
+.weather-forecast{
+    margin-top:20px;
+
+}
+.weather-forecast-date{
+    font-size: 16px;
+    opacity: 0.6;
+}
+.weather-forecast-temp{
+    font-size: 13px;
+}
+.weather-forecast-temperature-min{
+    opacity: 0.6;
 }

@@ -21,6 +21,44 @@ function formatDate(timestamp) {
   let day = days[date.getDay()];
   return `${day} ${hours}: ${minutes}`;
 }
+function displayForecast(){
+let forecastElement = document.querySelector("#forecast") 
+let forecastHTML = `<div class="row">`;
+let days = ["Fri","Sat", "Sun", "Mon","Tues", "Wed"];
+days.forEach(function(day){
+ 
+forecastHTML = forecastHTML + `   
+      <div class="col-2">
+        <div class="weather-forecast-date">
+      ${day}
+    </div>
+      <img
+       src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png" 
+      alt="rainy" width="43"
+      />
+      <div class="weather-forecast-temp">
+       <span class="weather-forecast-temperature-max"> 50° </span>
+      <span class="weather-forecast-temperature-min"> 47° </span> 
+    </div>       
+      </div>
+    
+    
+    
+      `;  
+});
+
+
+      forecastHTML = forecastHTML+`</div>`;
+forecastElement.innerHTML = forecastHTML;
+
+}
+function getForecast(coordinates){
+    console.log(coordinates)
+    let apiKey = "2b6fdad0cbd018949c50c70f72250726";
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?
+    lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&units=imperial`
+    axios.get(apiUrl).then(displayForecast);
+}
 
 function displayTemp(response) {
   console.log(response);
@@ -51,6 +89,7 @@ function displayTemp(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+   getForecast(response.data.coordinates);
 }
 
 function search(city) {
@@ -66,6 +105,7 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 let celsiusTemperature = null;
+
 
 function displaycelsiusTemperature(event) {
   event.preventDefault();
@@ -97,3 +137,4 @@ let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayfahrenheitTemperature);
 
 search("Atlanta");
+displayForecast();
