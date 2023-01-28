@@ -37,8 +37,8 @@ forecastHTML = forecastHTML + `
       alt="rainy" width="43"
       />
       <div class="weather-forecast-temp">
-       <span class="weather-forecast-temperature-max"> 50° </span>
-      <span class="weather-forecast-temperature-min"> 47° </span> 
+       <span class="weather-forecast-temperature-max"> 25° </span>
+      <span class="weather-forecast-temperature-min"> 27° </span> 
     </div>       
       </div>
     
@@ -52,12 +52,11 @@ forecastHTML = forecastHTML + `
 forecastElement.innerHTML = forecastHTML;
 
 }
-function getForecast(coordinates){
-    console.log(coordinates)
-    let apiKey = "2b6fdad0cbd018949c50c70f72250726";
-    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?
-    lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&units=imperial`
-    axios.get(apiUrl).then(displayForecast);
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayTemp(response) {
@@ -93,7 +92,7 @@ function displayTemp(response) {
 }
 
 function search(city) {
-  let apiKey = "e6103b1173ff0o84d6baf0bf2taa3d79";
+  let apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
 
   axios.get(apiUrl).then(displayTemp);
