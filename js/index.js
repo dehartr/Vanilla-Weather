@@ -20,6 +20,14 @@ function formatDate(timestamp) {
   ];
   let day = days[date.getDay()];
   return `${day} ${hours}: ${minutes}`;
+
+}
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
 }
 function displayForecast(){
 let forecastElement = document.querySelector("#forecast") 
@@ -63,28 +71,24 @@ function displayTemp(response) {
   console.log(response);
 
   let tempElement = document.querySelector("#temperature");
-  celsiusTemperature = Math.round(response.data.temperature.current);
-  tempElement.innerHTML = celsiusTemperature;
-
   let cityElement = document.querySelector("#city");
-  cityElement.innerHTML = response.data.city;
+   let description = document.querySelector("#description");
+     let humidity = document.querySelector("#humidity");
+     let wind = document.querySelector("#wind");
+    let date = document.querySelector("#date");
+    let icon = document.querySelector("#icon");
+  
+  
+     celsiusTemperature = Math.round(response.data.temperature.current);
+       fahrenheitTemp = response.data.temperature.current;
+  tempElement.innerHTML = celsiusTemperature;
+ cityElement.innerHTML = response.data.city;
+description.innerHTML = response.data.condition.description;
+ humidity.innerHTML = response.data.temperature.humidity;
+ wind.innerHTML = Math.round(response.data.wind.speed);
+date.innerHTML = formatDate(response.data.time * 1000);
 
-  let description = document.querySelector("#description");
-  description.innerHTML = response.data.condition.description;
-
-  let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = response.data.temperature.humidity;
-
-  let wind = document.querySelector("#wind");
-  wind.innerHTML = Math.round(response.data.wind.speed);
-
-  let date = document.querySelector("#date");
-  date.innerHTML = formatDate(response.data.time * 1000);
-
-  fahrenheitTemp = response.data.temperature.current;
-
-  let icon = document.querySelector("#icon");
-  icon.setAttribute(
+icon.setAttribute(
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
