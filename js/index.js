@@ -29,24 +29,24 @@ function formatDay(timestamp) {
 
   return days[day];
 }
-function displayForecast(){
+function displayForecast(response){
+  let forecast = response.data.daily
 let forecastElement = document.querySelector("#forecast") 
 let forecastHTML = `<div class="row">`;
-let days = ["Fri","Sat", "Sun", "Mon","Tues", "Wed"];
-days.forEach(function(day){
+forecast.forEach(function(day){
  
 forecastHTML = forecastHTML + `   
       <div class="col-2">
         <div class="weather-forecast-date">
-      ${day}
+      ${formatDay(day.time)}
     </div>
       <img
-       src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png" 
+       src=${day.condition.icon_url} 
       alt="rainy" width="43"
       />
       <div class="weather-forecast-temp">
-       <span class="weather-forecast-temperature-max"> 25° </span>
-      <span class="weather-forecast-temperature-min"> 27° </span> 
+       <span class="weather-forecast-temperature-max"> ${day.temperature.minimum}° </span>
+      <span class="weather-forecast-temperature-min"> ${day.temperature.maximum}° </span> 
     </div>       
       </div>
     
@@ -140,4 +140,3 @@ let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayfahrenheitTemperature);
 
 search("Atlanta");
-displayForecast();
